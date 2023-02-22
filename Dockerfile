@@ -1,7 +1,8 @@
 FROM ruby:3.2.1
 ARG version
 
-COPY . /
+COPY . /workdir
+WORKDIR /workdir
 
 RUN gem build buildkite-builder.gemspec
 
