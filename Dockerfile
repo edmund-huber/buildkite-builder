@@ -1,10 +1,10 @@
-FROM ruby:3.0
+FROM ruby:3.2.1
 ARG version
 
-RUN if [ -z ${version} ]; then                        \
-      gem install buildkite-builder;                  \
-    else                                              \
-      gem install buildkite-builder -v ${version};    \
-    fi
+COPY . /
+
+RUN gem build buildkite-builder.gemspec
+
+RUN gem install buildkite-builder-*.gem
 
 CMD buildkite-builder run
